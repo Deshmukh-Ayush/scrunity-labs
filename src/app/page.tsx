@@ -1,5 +1,7 @@
 import { Container } from "@/components/container";
+import { MobileNav } from "@/components/mobile-nav";
 import { Sidebar } from "@/components/sidebar";
+import { Heading, Para } from "@/components/utils/texts";
 
 const sections = [
   { id: "mission", label: "Mission" },
@@ -12,12 +14,13 @@ const sections = [
 
 export default function Home() {
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background">
+      <MobileNav sections={sections} />
+
       <Container className="grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr]">
-        {/* LEFT: column stretches full page height so the border runs top to bottom */}
-        <aside className="hidden border-r border-neutral-200 md:block">
-          {/* Inner wrapper is what stays pinned while you scroll */}
-          <div className="sticky top-0 h-screen overflow-y-auto pt-14 pr-6">
+        {/* left navbar */}
+        <aside className="hidden border-r border-border md:block">
+          <div className="sticky top-0 h-screen overflow-y-auto pt-14 pr-6 scrollbar-none">
             <Sidebar sections={sections} />
           </div>
         </aside>
@@ -25,21 +28,15 @@ export default function Home() {
         {/* RIGHT: scrolling content */}
         <main className="min-w-0 py-14 md:pl-12">
           <section id="mission" className="scroll-mt-14 pb-24">
-            <h1 className="max-w-[480px] text-[32px] leading-[1.25] tracking-tight text-neutral-900">
-              Scrunity Labs audits your company and builds the AI agents that run it.
-            </h1>
+            <Heading>
+              we build ai infrastructure <br /> to decrease cost & friction <br /> and increase efficiency.
+            </Heading>
+            <Para className="py-6">
+              We save you cost, time and efforts.
+            </Para>
           </section>
 
-          {/* Placeholder sections so you can test the scroll-spy */}
-          {sections.slice(1).map((s) => (
-            <section
-              key={s.id}
-              id={s.id}
-              className="min-h-[80vh] scroll-mt-14 border-t border-neutral-200 py-12"
-            >
-              <h2 className="text-2xl text-neutral-900">{s.label}</h2>
-            </section>
-          ))}
+        
         </main>
       </Container>
     </div>

@@ -7,7 +7,13 @@ export type Section = { id: string; label: string };
 
 const MINOR_TICKS = 3; // ruler ticks between each section
 
-export function OnThisPage({ sections }: { sections: Section[] }) {
+export function OnThisPage({
+  sections,
+  onNavigate,
+}: {
+  sections: Section[];
+  onNavigate?: () => void;
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Scroll-spy: the section crossing ~40% from the top of the viewport is "active"
@@ -32,38 +38,40 @@ export function OnThisPage({ sections }: { sections: Section[] }) {
   }, [sections]);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    // Close any open sheet first so the page can scroll underneath it
+    onNavigate?.();
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
   };
 
   return (
     <div className="mt-7">
-      <p className="font-mono text-[10px] tracking-[0.12em] text-neutral-500 uppercase">
-        On this page
-      </p>
+      <p className="eyebrow">On this page</p>
 
       <ul className="mt-5">
         {sections.map((s, i) => {
           const isActive = i === activeIndex;
-          const isPassed = i <= activeIndex; // sections above the current one stay blue
+          const isPassed = i <= activeIndex; // sections above the current one stay accent-colored
 
           return (
             <li key={s.id}>
               {/* Major tick + label */}
               <button
                 onClick={() => scrollTo(s.id)}
+                aria-current={isActive ? "location" : undefined}
                 className="group flex h-6 items-center gap-3"
               >
                 <span
                   className={cn(
-                    "h-px transition-all duration-300 ease-out",
-                    isActive ? "w-5 bg-blue-600" : isPassed ? "w-3 bg-blue-600" : "w-3 bg-neutral-400",
+                    "h-px transition-all duration-300 ease-out motion-reduce:transition-none",
+                    isActive ? "w-5 bg-accent" : isPassed ? "w-3 bg-accent" : "w-3 bg-muted/60",
                     "group-hover:w-5"
                   )}
                 />
                 <span
                   className={cn(
-                    "text-[14px] transition-colors",
-                    isActive ? "text-neutral-900" : "text-neutral-500 group-hover:text-neutral-900"
+                    "text-[14px] transition-colors motion-reduce:transition-none",
+                    isActive ? "text-foreground" : "text-muted group-hover:text-foreground"
                   )}
                 >
                   {s.label}
@@ -74,7 +82,7 @@ export function OnThisPage({ sections }: { sections: Section[] }) {
               {i < sections.length - 1 && (
                 <div className="flex flex-col gap-[5px] py-[3px]">
                   {Array.from({ length: MINOR_TICKS }).map((_, t) => (
-                    <span key={t} className="h-px w-1.5 bg-neutral-300" />
+                    <span key={t} className="h-px w-1.5 bg-border" />
                   ))}
                 </div>
               )}

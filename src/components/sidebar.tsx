@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "cn";
 import { OnThisPage, type Section } from "./on-this-page";
@@ -14,60 +15,79 @@ const links = [
   { href: "/contact", label: "Book an audit", external: true },
 ];
 
+function isActiveHref(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function Logo() {
+  return (
+    <Link href="/" className="text-[20px] font-medium tracking-tight text-foreground">
+      scrunity labs
+    </Link>
+  );
+}
+
+export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+  const pathname = usePathname();
+
+  return (
+    <nav className="flex flex-col gap-[14px]">
+      {links.map((l) => {
+        const isActive = isActiveHref(pathname, l.href);
+        return (
+          <Link
+            key={l.href}
+            href={l.href}
+            onClick={onNavigate}
+            aria-current={isActive ? "page" : undefined}
+            className={cn(
+              "relative w-fit text-[14px] transition-colors motion-reduce:transition-none",
+              isActive ? "text-foreground" : "text-muted hover:text-foreground"
+            )}
+          >
+            {/* Small square marker for the active page */}
+            {isActive && (
+              <span className="absolute top-1/2 -left-3.5 size-[5px] -translate-y-1/2 bg-accent" />
+            )}
+            {l.label}
+            {l.external && <span className="ml-1 text-muted/70">↗</span>}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
 export function Sidebar({ sections }: { sections: Section[] }) {
-  const [view, setView] = useState<"founder" | "ops">("founder");
-  const active = "/"; // swap for usePathname() once you have more routes
+  const [view, setView] = useState<"human" | "agent">("human");
 
   return (
     <div className="flex flex-col">
-      {/* Logo */}
-      <Link href="/" className="text-[20px] font-medium tracking-tight text-neutral-900">
-        scrunity labs
-      </Link>
+      <Logo />
 
       {/* Segmented toggle */}
-      <div className="mt-6 inline-flex w-fit rounded-lg border border-neutral-200 bg-neutral-50 p-[3px]">
-        {(["founder", "ops"] as const).map((v) => (
+      <div className="mt-6 inline-flex w-fit rounded-lg border border-border bg-border/30 p-[3px]">
+        {(["human", "agent"] as const).map((v) => (
           <button
             key={v}
             onClick={() => setView(v)}
             className={cn(
-              "rounded-md px-3 py-1.5 text-[11px] font-medium capitalize transition-colors",
+              "rounded-md px-3 py-1.5 text-[11px] font-medium capitalize transition-colors motion-reduce:transition-none",
               view === v
-                ? "bg-white text-neutral-900 shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
-                : "text-neutral-500 hover:text-neutral-800"
+                ? "bg-background text-foreground shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+                : "text-muted hover:text-foreground"
             )}
           >
-            {v === "ops" ? "Operations" : "Founder"}
+            {v === "agent" ? "Operations" : "human"}
           </button>
         ))}
       </div>
 
-      {/* Primary nav */}
-      <nav className="mt-10 flex flex-col gap-[14px]">
-        {links.map((l) => {
-          const isActive = active === l.href;
-          return (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "relative w-fit text-[14px] transition-colors",
-                isActive ? "text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
-              )}
-            >
-              {/* Small square marker for the active page */}
-              {isActive && (
-                <span className="absolute top-1/2 -left-3.5 size-[5px] -translate-y-1/2 bg-blue-600" />
-              )}
-              {l.label}
-              {l.external && <span className="ml-1 text-neutral-400">↗</span>}
-            </Link>
-          );
-        })}
-      </nav>
+      <div className="mt-10">
+        <NavLinks />
+      </div>
 
-      <div className="mt-8 border-t border-dashed border-neutral-300" />
+      <div className="mt-8 border-t border-dashed border-border" />
 
       <OnThisPage sections={sections} />
     </div>
