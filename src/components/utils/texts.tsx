@@ -17,6 +17,14 @@ export const SubHeading = ({ children, className }: { children: React.ReactNode;
   )
 }
 
+export const Label = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+  return (
+    <div className={cn("text-[24px] leading-[1.25] tracking-[-0.5px] font-normal text-foreground",  className)}>
+      {children}
+    </div>
+  )
+}
+
 export const Para = ({ children, className, tone = "muted" }: {
   children: React.ReactNode;
   className?: string;
