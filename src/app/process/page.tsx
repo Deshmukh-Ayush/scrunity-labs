@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Heading, Para } from "@/components/utils/texts";
 
 export const metadata: Metadata = {
+  alternates: { types: { "text/markdown": "/process.md" } },
   title: "Process · Scrunity Labs",
   description:
     "How an engagement unfolds, chapter by chapter: from friction and listening to a roadmap, a build, a careful launch and a system that keeps improving.",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PageView } from "@/components/agent-view";
 import { Container } from "@/components/container";
 import { MobileNav } from "@/components/mobile-nav";
 import { Sidebar } from "@/components/sidebar";
@@ -38,7 +39,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </aside>
 
           {/* RIGHT: scrolling page content */}
-          <main className="min-w-0 py-14 md:pl-12">{children}</main>
+          <main className="min-w-0 py-14 md:pl-12">
+            <PageView>{children}</PageView>
+          </main>
         </Container>
       </body>
     </html>

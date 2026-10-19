@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { cn } from "cn";
 import { pageSections } from "@/lib/sections";
+import { ForAgents } from "./agent-view";
 import { OnThisPage } from "./on-this-page";
+import { useViewMode, ViewSwitch } from "./view-mode";
 import { Wordmark } from "./wordmark";
 
 const links = [
@@ -56,40 +57,31 @@ export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 export function Sidebar() {
   const pathname = usePathname();
   const sections = pageSections[pathname] ?? [];
-  const [view, setView] = useState<"human" | "agent">("human");
+  const mode = useViewMode();
 
   return (
     <div className="flex flex-col">
       <Logo />
 
-      {/* Segmented toggle */}
-      <div className="mt-6 inline-flex w-fit rounded-lg border border-border bg-border/30 p-[3px]">
-        {(["human", "agent"] as const).map((v) => (
-          <button
-            key={v}
-            onClick={() => setView(v)}
-            className={cn(
-              "rounded-md px-3 py-1.5 text-[11px] font-medium capitalize transition-colors motion-reduce:transition-none",
-              view === v
-                ? "bg-background text-foreground shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
-                : "text-muted hover:text-foreground"
-            )}
-          >
-            {v === "agent" ? "Operations" : "human"}
-          </button>
-        ))}
-      </div>
+      <ViewSwitch className="mt-6" />
 
       <div className="mt-10">
         <NavLinks />
       </div>
 
-      {sections.length > 0 && (
+      {mode === "agent" ? (
         <>
           <div className="mt-8 border-t border-dashed border-border" />
-          {/* Keyed by route so the scroll-spy resets on navigation */}
-          <OnThisPage key={pathname} sections={sections} />
+          <ForAgents />
         </>
+      ) : (
+        sections.length > 0 && (
+          <>
+            <div className="mt-8 border-t border-dashed border-border" />
+            {/* Keyed by route so the scroll-spy resets on navigation */}
+            <OnThisPage key={pathname} sections={sections} />
+          </>
+        )
       )}
     </div>
   );

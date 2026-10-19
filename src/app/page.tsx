@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import * as Annotation from "@/components/annotation/annotation";
 import { TickBarChart } from "@/components/annotation/tick-bar-chart";
 import HeroCtas from "@/components/buttons/hero-cta";
@@ -9,6 +10,10 @@ import { Heading, Label, Para } from "@/components/utils/texts";
 import { WhatWeDo } from "@/components/what-we-do";
 import { WhyWorkWithUs } from "@/components/why-work-with-us";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  alternates: { types: { "text/markdown": "/index.md" } },
+};
 
 // Sample data from the reference recording; swap for real metrics
 const tokenShare = [

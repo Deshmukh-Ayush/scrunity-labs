@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Heading, Label, Para } from "@/components/utils/texts";
 
 export const metadata: Metadata = {
+  alternates: { types: { "text/markdown": "/services.md" } },
   title: "Services · Scrunity Labs",
   description:
     "Strategy, production AI systems, evals, document intelligence, fine-tuning and AI-native product design, from roadmap to deployment.",
