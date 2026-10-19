@@ -500,7 +500,7 @@ const DEFAULT_PROMPT = SCRUNITY_PROMPT;
 
 export default function HeroCtas({
   prompt = DEFAULT_PROMPT,
-  processHref = "#how-it-works",
+  processHref = "/process",
   bookHref = "/contact",
   targets = DEFAULT_TARGETS,
   className,

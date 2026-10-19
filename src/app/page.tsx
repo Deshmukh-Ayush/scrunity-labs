@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 
 // Sample data from the reference recording; swap for real metrics
 const tokenShare = [
-  { label: "DeepSeek", value: 27.6 },
-  { label: "Z.ai", value: 11.5 },
-  { label: "OpenAI", value: 8.7 },
+  { label: "Anthropic", value: 27.6 },
+  { label: "OpenAI", value: 11.5 },
+  { label: "Z.ai", value: 8.7 },
   { label: "Stepfun", value: 8.3 },
-  { label: "Anthropic", value: 8.0 },
+  { label: "DeepSeek", value: 8.0 },
   { label: "Xiaomi", value: 7.6 },
   { label: "Tencent", value: 6.3 },
   { label: "NVIDIA", value: 4.8 },

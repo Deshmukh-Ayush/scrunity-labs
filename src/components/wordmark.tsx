@@ -12,7 +12,7 @@ export function Wordmark({ className }: { className?: string }) {
         width={3349}
         height={673}
         unoptimized
-        className={cn("h-5.5 w-auto", className)}
+        className={cn("h-7 w-auto", className)}
       />
     </Link>
   );
