@@ -1,4 +1,5 @@
 import type { Section } from "@/components/on-this-page";
+import { chapters } from "@/components/process/chapters-data";
 
 // "On this page" entries per route. Each id must match a <section id=…> on that page (with scroll-mt-14).
 export const pageSections: Record<string, Section[]> = {
@@ -14,4 +15,5 @@ export const pageSections: Record<string, Section[]> = {
     { id: "principles", label: "Our approach" },
     { id: "get-started", label: "Get started" },
   ],
+  "/process": [...chapters, { id: "get-started", label: "Get started" }],
 };

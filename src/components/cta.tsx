@@ -3,8 +3,12 @@
 import Image from "next/image";
 import { PrimaryButton } from "./buttons/hero-cta";
 
-/** Closing call to action: copy on the open blue sky of the artwork, the hero's process button below it. */
-export function Cta() {
+/** Closing call to action: copy on the open blue sky of the artwork, a primary button below it. */
+export function Cta({
+  action = { href: "/process", label: "See the process" },
+}: {
+  action?: { href: string; label: string };
+}) {
   return (
     <div className="group relative isolate flex min-h-[440px] flex-col overflow-hidden bg-[#0570fe] p-7 sm:aspect-[3818/2160] sm:min-h-0 sm:p-10">
       <Image
@@ -25,7 +29,7 @@ export function Cta() {
       </p>
 
       <div className="mt-7 flex">
-        <PrimaryButton href="/process">See the process</PrimaryButton>
+        <PrimaryButton href={action.href}>{action.label}</PrimaryButton>
       </div>
     </div>
   );
