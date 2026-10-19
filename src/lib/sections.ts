@@ -8,4 +8,10 @@ export const pageSections: Record<string, Section[]> = {
     { id: "why-work-with-us", label: "Why work with us" },
     { id: "get-started", label: "Get started" },
   ],
+  "/services": [
+    { id: "capabilities", label: "What we offer" },
+    { id: "engagement", label: "How we engage" },
+    { id: "principles", label: "Our approach" },
+    { id: "get-started", label: "Get started" },
+  ],
 };
