@@ -5,11 +5,14 @@ import { useRef } from "react";
 import { Container } from "./container";
 import { Logo, NavLinks } from "./sidebar";
 import { pageSections } from "@/lib/sections";
+import { ForAgents } from "./agent-view";
 import { OnThisPage } from "./on-this-page";
+import { useViewMode, ViewSwitch } from "./view-mode";
 
 export function MobileNav() {
   const pathname = usePathname();
   const sections = pageSections[pathname] ?? [];
+  const mode = useViewMode();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const open = () => dialogRef.current?.showModal();
@@ -54,15 +57,24 @@ export function MobileNav() {
             </button>
           </div>
 
-          <div className="mt-4">
+          <ViewSwitch className="mt-2" />
+
+          <div className="mt-8">
             <NavLinks onNavigate={close} />
           </div>
 
-          {sections.length > 0 && (
+          {mode === "agent" ? (
             <>
               <div className="mt-8 border-t border-dashed border-border" />
-              <OnThisPage key={pathname} sections={sections} onNavigate={close} />
+              <ForAgents />
             </>
+          ) : (
+            sections.length > 0 && (
+              <>
+                <div className="mt-8 border-t border-dashed border-border" />
+                <OnThisPage key={pathname} sections={sections} onNavigate={close} />
+              </>
+            )
           )}
         </div>
       </dialog>

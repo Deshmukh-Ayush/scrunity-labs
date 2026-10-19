@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Heading, Label, Para } from "@/components/utils/texts";
 
 export const metadata: Metadata = {
+  alternates: { types: { "text/markdown": "/blog.md" } },
   title: "Blog · Scrunity Labs",
   description:
     "Field notes on putting frontier models to work: evals, document extraction, reliability, AI-assisted coding, fine-tuning and interfaces for AI. The first posts are on the way.",
