@@ -8,6 +8,7 @@ import { Sidebar } from "@/components/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { Heading, Label, Para } from "@/components/utils/texts";
 import { WhatWeDo } from "@/components/what-we-do";
+import { WhyWorkWithUs } from "@/components/why-work-with-us";
 import Image from "next/image";
 
 const sections = [
@@ -187,6 +188,11 @@ export default function Home() {
           <section id="what-we-do" className="scroll-mt-14 my-12">
             <Label>What we do</Label>
             <WhatWeDo />
+          </section>
+          <Separator />
+          <section id="why-work-with-us" className="scroll-mt-14 my-12">
+            <Label>Why work with us</Label>
+            <WhyWorkWithUs />
           </section>
         </main>
       </Container>
