@@ -1,11 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { Container } from "./container";
 import { Logo, NavLinks } from "./sidebar";
-import { OnThisPage, type Section } from "./on-this-page";
+import { pageSections } from "@/lib/sections";
+import { OnThisPage } from "./on-this-page";
 
-export function MobileNav({ sections }: { sections: Section[] }) {
+export function MobileNav() {
+  const pathname = usePathname();
+  const sections = pageSections[pathname] ?? [];
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const open = () => dialogRef.current?.showModal();
@@ -54,9 +58,12 @@ export function MobileNav({ sections }: { sections: Section[] }) {
             <NavLinks onNavigate={close} />
           </div>
 
-          <div className="mt-8 border-t border-dashed border-border" />
-
-          <OnThisPage sections={sections} onNavigate={close} />
+          {sections.length > 0 && (
+            <>
+              <div className="mt-8 border-t border-dashed border-border" />
+              <OnThisPage key={pathname} sections={sections} onNavigate={close} />
+            </>
+          )}
         </div>
       </dialog>
     </>

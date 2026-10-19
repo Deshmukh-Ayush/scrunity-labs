@@ -11,7 +11,8 @@ import type { ReactNode } from "react";
 
 const ELLIPSE = "M9 36a27 10 0 1 0 54 0a27 10 0 1 0 -54 0";
 
-function Frame({ children }: { children: ReactNode }) {
+/** 72×72 line-art canvas in currentColor; shared by the Services stage tiles. */
+export function Frame({ children }: { children: ReactNode }) {
   return (
     <svg
       viewBox="0 0 72 72"
