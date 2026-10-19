@@ -1,8 +1,10 @@
 import * as Annotation from "@/components/annotation/annotation";
 import { TickBarChart } from "@/components/annotation/tick-bar-chart";
 import HeroCtas from "@/components/buttons/hero-cta";
-import { ClaudeIcon, GeminiIcon, GrokIcon, OpenaiIcon, PerplexityAiIcon } from "@/components/buttons/icons";
+import { AskAi } from "@/components/buttons/ask-ai";
 import { Container } from "@/components/container";
+import { Cta } from "@/components/cta";
+import { Footer } from "@/components/footer";
 import { MobileNav } from "@/components/mobile-nav";
 import { Sidebar } from "@/components/sidebar";
 import { Separator } from "@/components/ui/separator";
@@ -14,10 +16,8 @@ import Image from "next/image";
 const sections = [
   { id: "mission", label: "Mission" },
   { id: "what-we-do", label: "What we do" },
-  { id: "how-it-works", label: "How it works" },
-  { id: "sample-report", label: "Sample report" },
-  { id: "security", label: "Security" },
-  { id: "pricing", label: "Pricing" },
+  { id: "why-work-with-us", label: "Why work with us" },
+  { id: "get-started", label: "Get started" },
 ];
 
 // Sample data from the reference recording; swap for real metrics
@@ -56,16 +56,7 @@ export default function Home() {
             </Para>
             
             <HeroCtas />
-            <div className="flex max-w-fit items-center gap-6 py-8">
-              <span className="text-xs font-medium font-mono tracking-wide text-muted">ASK ABOUT SCRUNITY LABS ON:</span>
-              <div className="flex items-center gap-4 [&_svg]:h-4.5 [&_svg]:w-4.5">
-                <OpenaiIcon />
-                <ClaudeIcon />
-                <PerplexityAiIcon />
-                <GrokIcon />
-                <GeminiIcon />
-              </div>
-            </div>
+            <AskAi className="py-8" />
 
             <Image src="/hero-img.png" alt="Hero Image" height={300} width={1200} className="w-full h-auto mt-10 " />
           </section>
@@ -194,6 +185,11 @@ export default function Home() {
             <Label>Why work with us</Label>
             <WhyWorkWithUs />
           </section>
+          <Separator />
+          <section id="get-started" className="scroll-mt-14 my-12">
+            <Cta />
+          </section>
+          <Footer />
         </main>
       </Container>
     </div>

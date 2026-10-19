@@ -104,3 +104,6 @@ export const GeminiIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 );
+
+
+

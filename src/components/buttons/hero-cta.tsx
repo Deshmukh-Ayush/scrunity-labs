@@ -20,6 +20,7 @@ import {
 } from "motion/react";
 import type { Transition } from "motion/react";
 import { cn } from "cn";
+import { SCRUNITY_PROMPT } from "./ask-ai";
 
 /* ───────────────────────── tokens (sampled from the reference) ───────────────────────── */
 
@@ -174,7 +175,7 @@ function Hatch({ alwaysVisible = false }: { alwaysVisible?: boolean }) {
  *        while spinning 360°, the label slides left and turns blue / regular weight.
  * One motion value (0 → 1) drives every property so interruptions reverse cleanly.
  */
-function PrimaryButton({ href, children }: { href: string; children: ReactNode }) {
+export function PrimaryButton({ href, children }: { href: string; children: ReactNode }) {
   const [hovered, hoverHandlers] = useHover();
   const tween = useTransition(0.42);
 
@@ -194,7 +195,8 @@ function PrimaryButton({ href, children }: { href: string; children: ReactNode }
     <a
       href={href}
       {...hoverHandlers}
-      style={{ height: HEIGHT, borderWidth: BORDER }}
+      // sets --cta itself so it also works outside HeroCtas
+      style={{ "--cta": CTA, height: HEIGHT, borderWidth: BORDER } as CSSProperties}
       className={cn(
         "relative inline-flex shrink-0 cursor-pointer select-none items-center overflow-hidden border-(--cta) bg-(--cta)",
         FOCUS
@@ -494,8 +496,7 @@ export type HeroCtasProps = {
   className?: string;
 };
 
-const DEFAULT_PROMPT =
-  "I'm evaluating Scrunity Labs. Summarize what they build, who it's for, and how a team would get started. Then ask me what I'm trying to do so you can suggest a next step.";
+const DEFAULT_PROMPT = SCRUNITY_PROMPT;
 
 export default function HeroCtas({
   prompt = DEFAULT_PROMPT,

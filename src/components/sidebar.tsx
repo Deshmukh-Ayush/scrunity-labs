@@ -5,14 +5,13 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "cn";
 import { OnThisPage, type Section } from "./on-this-page";
+import { Wordmark } from "./wordmark";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/process", label: "Process" },
   { href: "/blog", label: "Blog" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/contact", label: "Book an audit", external: true },
 ];
 
 function isActiveHref(pathname: string, href: string) {
@@ -20,11 +19,7 @@ function isActiveHref(pathname: string, href: string) {
 }
 
 export function Logo() {
-  return (
-    <Link href="/" className="text-[20px] font-medium tracking-tight text-foreground">
-      scrunity labs
-    </Link>
-  );
+  return <Wordmark />;
 }
 
 export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
@@ -50,7 +45,6 @@ export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
               <span className="absolute top-1/2 -left-3.5 size-[5px] -translate-y-1/2 bg-accent" />
             )}
             {l.label}
-            {l.external && <span className="ml-1 text-muted/70">↗</span>}
           </Link>
         );
       })}
