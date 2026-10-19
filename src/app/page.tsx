@@ -1,7 +1,10 @@
+import HeroCtas from "@/components/buttons/hero-cta";
+import { ClaudeIcon, GeminiIcon, GrokIcon, OpenaiIcon, PerplexityAiIcon } from "@/components/buttons/icons";
 import { Container } from "@/components/container";
 import { MobileNav } from "@/components/mobile-nav";
 import { Sidebar } from "@/components/sidebar";
 import { Heading, Para } from "@/components/utils/texts";
+import Image from "next/image";
 
 const sections = [
   { id: "mission", label: "Mission" },
@@ -27,16 +30,34 @@ export default function Home() {
 
         {/* RIGHT: scrolling content */}
         <main className="min-w-0 py-14 md:pl-12">
-          <section id="mission" className="scroll-mt-14 pb-24">
+          <section id="hero" className="scroll-mt-14 my-12">
             <Heading>
               we build ai infrastructure <br /> to decrease cost & friction <br /> and increase efficiency.
             </Heading>
             <Para className="py-6">
               We save you cost, time and efforts.
             </Para>
+            
+            <HeroCtas />
+            <div className="flex max-w-fit items-center gap-6 py-8">
+              <span className="text-xs font-medium font-mono tracking-wide text-muted">ASK ABOUT SCRUNITY LABS ON:</span>
+              <div className="flex items-center gap-4 [&_svg]:h-4.5 [&_svg]:w-4.5">
+                <OpenaiIcon />
+                <ClaudeIcon />
+                <PerplexityAiIcon />
+                <GrokIcon />
+                <GeminiIcon />
+              </div>
+            </div>
+
+            <Image src="/hero-img.png" alt="Hero Image" height={300} width={1200} className="w-full h-auto mt-10 " />
           </section>
 
-        
+          <section id="mission" className="">
+            <Para>
+              Our mission is to empower businesses with cutting-edge AI solutions that drive real value and innovation.
+            </Para>
+          </section>
         </main>
       </Container>
     </div>

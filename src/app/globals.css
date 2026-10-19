@@ -3,9 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #0b1015;
-  --muted: #737373;
+  --muted: #919395;
   --border: #e5e5e5;
   --accent: #2563eb;
+  --brand: oklch(0.703 0.16 239.5);
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-brand: var(--brand);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
