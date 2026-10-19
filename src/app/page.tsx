@@ -34,7 +34,7 @@ export default function Home() {
             <Heading>
               we build ai infrastructure <br /> to decrease cost & friction <br /> and increase efficiency.
             </Heading>
-            <Para className="py-6">
+            <Para className="py-6 tracking-[-0.1px]">
               We save you cost, time and efforts.
             </Para>
             
@@ -54,7 +54,7 @@ export default function Home() {
           </section>
 
           <section id="mission" className="">
-            <Para>
+            <Para tone="foreground">
               Our mission is to empower businesses with cutting-edge AI solutions that drive real value and innovation.
             </Para>
           </section>
