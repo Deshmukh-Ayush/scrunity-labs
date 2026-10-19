@@ -1,0 +1,50 @@
+/* Typewriter figure: the anatomy kit's light theme, tuned to the site's tokens. */
+
+.tw {
+  --anatomy-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --anatomy-card: #f9f9f9;
+  --anatomy-muted: var(--muted);
+  --tw-ink: var(--accent);
+}
+.tw .iso-figure { margin: 0; }
+.tw .iso-plate { box-shadow: none; }
+.tw .iso-plate-corner { font-size: 10px; letter-spacing: 0.12em; }
+.tw .iso-plate-corner[data-corner="fig"],
+.tw .iso-plate-corner[data-corner="readout"] { letter-spacing: 0.04em; }
+.tw .iso-legend { margin-top: 16px; gap: 10px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.tw .iso-keys { font-size: 13px; }
+
+/* the sheet and the blank stack read as white paper, not as a grey solid */
+.tw .tw-paper > .iso-fill,
+.tw .tw-paper > .iso-top,
+.tw .tw-paper > .iso-shade { fill: #ffffff; }
+.tw .tw-paper > .iso-shade[data-shade="0"] { fill: #f3f3f1; }
+
+.tw-ribbon {
+  fill: none;
+  stroke: var(--tw-ink);
+  stroke-width: 1.4px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.tw-ink text { fill: var(--tw-ink); font-family: var(--anatomy-mono); font-size: 4.6px; text-anchor: middle; }
+.tw-ink text[data-fresh] { animation: tw-strike 0.5s var(--anatomy-ease) both; }
+@keyframes tw-strike { from { opacity: 0.25; } to { opacity: 1; } }
+
+.tw-key, [data-part="lever"] { cursor: pointer; }
+.tw-key[data-down] .iso-edge { stroke: var(--anatomy-hi); }
+.tw-bar[data-hidden] { opacity: 0; }
+
+.tw-stage { touch-action: pan-y; outline: none; }
+.tw-stage:focus-visible { outline: 1px solid var(--anatomy-muted); outline-offset: 6px; }
+.tw-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-ink text[data-fresh] { animation: none; }
+}
+
+/* phones: let the drawing run a little past the card's padding so its parts stay legible */
+@media (max-width: 560px) {
+  .tw .iso-plate { overflow: hidden; }
+  .tw .tw-stage { margin: 0 -8%; }
+}
