@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "cn";
-import { OnThisPage, type Section } from "./on-this-page";
+import { pageSections } from "@/lib/sections";
+import { OnThisPage } from "./on-this-page";
 import { Wordmark } from "./wordmark";
 
 const links = [
@@ -52,7 +53,9 @@ export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-export function Sidebar({ sections }: { sections: Section[] }) {
+export function Sidebar() {
+  const pathname = usePathname();
+  const sections = pageSections[pathname] ?? [];
   const [view, setView] = useState<"human" | "agent">("human");
 
   return (
@@ -81,9 +84,13 @@ export function Sidebar({ sections }: { sections: Section[] }) {
         <NavLinks />
       </div>
 
-      <div className="mt-8 border-t border-dashed border-border" />
-
-      <OnThisPage sections={sections} />
+      {sections.length > 0 && (
+        <>
+          <div className="mt-8 border-t border-dashed border-border" />
+          {/* Keyed by route so the scroll-spy resets on navigation */}
+          <OnThisPage key={pathname} sections={sections} />
+        </>
+      )}
     </div>
   );
 }
