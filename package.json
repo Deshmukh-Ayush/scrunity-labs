@@ -10,6 +10,7 @@
     "figures": "node scripts/figures/typewriter.mjs"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.81",
     "cn": "^0.5.0",
     "motion": "^14.3.0",
     "next": "16.4.2",

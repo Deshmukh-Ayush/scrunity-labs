@@ -1,5 +1,6 @@
 import type { ComponentType, SVGProps } from "react";
 import Link from "next/link";
+import { CALENDLY_URL } from "@/lib/calendly";
 import { Wordmark } from "./wordmark";
 
 function XIcon(props: SVGProps<SVGSVGElement>) {
@@ -31,7 +32,7 @@ function InstagramIcon(props: SVGProps<SVGSVGElement>) {
 const company = [
   { href: "/blog", label: "Blog" },
   { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Talk to Sales" },
+  { href: CALENDLY_URL, label: "Talk to Sales" },
 ];
 
 // TODO: swap in the real profile URLs

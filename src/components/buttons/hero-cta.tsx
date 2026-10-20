@@ -20,6 +20,7 @@ import {
 } from "motion/react";
 import type { Transition } from "motion/react";
 import { cn } from "cn";
+import { CALENDLY_URL } from "@/lib/calendly";
 import { SCRUNITY_PROMPT } from "./ask-ai";
 
 /* ───────────────────────── tokens (sampled from the reference) ───────────────────────── */
@@ -501,7 +502,7 @@ const DEFAULT_PROMPT = SCRUNITY_PROMPT;
 export default function HeroCtas({
   prompt = DEFAULT_PROMPT,
   processHref = "/process",
-  bookHref = "/contact",
+  bookHref = CALENDLY_URL,
   targets = DEFAULT_TARGETS,
   className,
 }: HeroCtasProps) {

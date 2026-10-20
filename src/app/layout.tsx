@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { PageView } from "@/components/agent-view";
+import { CalendlyPopup } from "@/components/calendly-popup";
 import { Container } from "@/components/container";
 import { MobileNav } from "@/components/mobile-nav";
 import { Sidebar } from "@/components/sidebar";
@@ -43,6 +44,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <PageView>{children}</PageView>
           </main>
         </Container>
+
+        <CalendlyPopup />
       </body>
     </html>
   );

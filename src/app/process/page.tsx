@@ -5,6 +5,7 @@ import { ProcessStory } from "@/components/process";
 import { StoryArc } from "@/components/process/story-arc";
 import { Separator } from "@/components/ui/separator";
 import { Heading, Para } from "@/components/utils/texts";
+import { CALENDLY_URL } from "@/lib/calendly";
 
 export const metadata: Metadata = {
   alternates: { types: { "text/markdown": "/process.md" } },
@@ -43,7 +44,7 @@ export default function ProcessPage() {
 
       <Separator />
       <section id="get-started" className="my-12 scroll-mt-14">
-        <Cta action={{ href: "/contact", label: "Book a call" }} />
+        <Cta action={{ href: CALENDLY_URL, label: "Book a call" }} />
       </section>
       <Footer />
     </>

@@ -8,6 +8,8 @@
 //
 // Keep each document in step with its page: when the copy on a page changes, change it here too.
 
+import { CALENDLY_URL } from "./calendly";
+
 export type AgentDoc = {
   route: string;
   title: string;
@@ -30,7 +32,7 @@ const NAV = `## Site
 - [Services](/services.md): what we offer, how we engage and our approach
 - [Process](/process.md): how an engagement unfolds, chapter by chapter
 - [Blog](/blog.md): field notes, coming soon
-- Talk to us: /contact`;
+- Talk to us: book a call at ${CALENDLY_URL}`;
 
 const home = `# ${SITE_NAME}
 
@@ -66,7 +68,7 @@ This is infrastructure as it should be: quiet, rigorous, and built to outlast th
 
 ## Get started
 
-Put the frontier to work. Tell us where your business feels the friction, and we'll show you what frontier intelligence can do about it. See the [process](/process.md) or talk to us at /contact.
+Put the frontier to work. Tell us where your business feels the friction, and we'll show you what frontier intelligence can do about it. See the [process](/process.md) or book a call at ${CALENDLY_URL}.
 
 ${NAV}`;
 
@@ -104,7 +106,7 @@ One team from first conversation to production, and we stay once it's live.
 
 ## Get started
 
-Put the frontier to work. Tell us where your business feels the friction, and we'll show you what frontier intelligence can do about it. See the [process](/process.md) or talk to us at /contact.
+Put the frontier to work. Tell us where your business feels the friction, and we'll show you what frontier intelligence can do about it. See the [process](/process.md) or book a call at ${CALENDLY_URL}.
 
 ${NAV}`;
 
@@ -150,7 +152,7 @@ Outcome: a system that compounds instead of expiring.
 
 ## Get started
 
-Book a call at /contact. See what we offer on the [services](/services.md) page.
+Book a call at ${CALENDLY_URL}. See what we offer on the [services](/services.md) page.
 
 ${NAV}`;
 
